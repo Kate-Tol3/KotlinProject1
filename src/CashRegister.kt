@@ -16,6 +16,7 @@ class CashRegister(private val bank: Bank, private val bank_id:String) : CashReg
 
 
     override fun exchangeRubToUsd(amount: Double): Double {
+        checkIntegrity()
         if (amount < 0 || amount > bank.getRubBalance()) {
             logs.add(FromCashRegisterMessage("exchangeError", "RUB", "USD", amount, "Invalid amount has been submitted"))
             throw Exception("Invalid amount has been submitted!")
@@ -28,6 +29,7 @@ class CashRegister(private val bank: Bank, private val bank_id:String) : CashReg
     }
 
     override fun exchangeUsdToRub(amount: Double): Double {
+        checkIntegrity()
         if (amount > bank.getUsdBalance() || amount < 0) {
             logs.add(FromCashRegisterMessage("exchangeError", "USD", "RUB", amount, "Invalid amount has been submitted"))
             throw Exception("Invalid amount has been submitted!")

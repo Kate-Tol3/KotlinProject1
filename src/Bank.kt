@@ -76,7 +76,7 @@ class Bank(private var rubBalance: Double = 0.0, private var usdBalance: Double 
         return exchangeRate
     }
 
-    fun setExchangeRate(newRate: Double): Unit {
+    fun setExchangeRate(newRate: Double) {
         exchangeRate = newRate
         logs.add(FromBankMessage("exchange_rate_change", "RUB", exchangeRate))
     }
